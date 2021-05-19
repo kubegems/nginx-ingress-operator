@@ -1,14 +1,12 @@
 FROM harbor.cloudminds.com/library/golang:1.15-stretch as build
 WORKDIR /build
-ARG GOPATH=/go
 RUN apt install -y git
 COPY . /build
-# RUN go build  -ldflags="-X 'main.GitHash=`git rev-parse HEAD`' -X 'main.BuildTime=`date "+%Y-%m-%d %H:%M:%S"`'" -mod=vendor -o gems-service ./cmd/server/main.go
 RUN CGO_ENABLED=0 GO111MODULE=on GOFLAGS="-gcflags=-trimpath=/go -asmflags=-trimpath=/go" GOOS=linux go build -trimpath -ldflags "-s -w" -o build/_output/bin/nginx-ingress-operator ./cmd/manager
 
 
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
+FROM harbor.cloudminds.com/library/ubi8/ubi-minimal:latest
 
 ENV OPERATOR=/usr/local/bin/nginx-ingress-operator \
     USER_UID=1001 \
