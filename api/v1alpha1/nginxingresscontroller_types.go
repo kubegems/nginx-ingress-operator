@@ -17,6 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -75,6 +76,11 @@ type NginxIngressControllerSpec struct {
 	// +nullable
 	// +operator-sdk:csv:customresourcedefinitions:type=spec
 	Service *Service `json:"service"`
+	// The Workload of the Ingress controller.
+	// +kubebuilder:validation:Optional
+	// +nullable
+	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors=true
+	Workload *Workload `json:"workload"`
 	// Ignore Ingress resources without the “kubernetes.io/ingress.class” annotation.
 	// +kubebuilder:validation:Optional
 	// +operator-sdk:csv:customresourcedefinitions:type=spec
@@ -276,6 +282,16 @@ type Prometheus struct {
 type AppProtect struct {
 	// Enable App Protect.
 	Enable bool `json:"enable"`
+}
+
+// Workload of the Ingress controller.
+type Workload struct {
+	// Specifies resource request and limit of the nginx container
+	// +kubebuilder:validation:Optional
+	Resources corev1.ResourceRequirements `json:"resources,omitempty"`
+	// Specifies extra labels of the workload(deployment or daemonset) of nginx.
+	// +kubebuilder:validation:Optional
+	ExtraLabels map[string]string `json:"extraLabels,omitempty"`
 }
 
 // Service defines the Service for the Ingress Controller.
