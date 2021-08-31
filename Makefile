@@ -3,7 +3,7 @@
 # To re-generate a bundle for another specific version without changing the standard setup, you can:
 # - use the VERSION as arg of the bundle target (e.g make bundle VERSION=0.0.2)
 # - use environment variables to overwrite this value (e.g export VERSION=0.0.2)
-VERSION ?= 0.5.1
+VERSION ?= 0.5.2
 
 # CHANNELS define the bundle channels used in the bundle.
 # Add a new line here if you would like to change its default config. (E.g CHANNELS = "candidate,fast,stable")
@@ -31,7 +31,7 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
 # nginx/nginx-ingress-operator-bundle:$VERSION and nginx/nginx-ingress-operator-catalog:$VERSION.
-IMAGE_TAG_BASE ?= nginx/nginx-ingress-operator
+IMAGE_TAG_BASE ?= kubegems/nginx-ingress-operator
 
 # BUNDLE_IMG defines the image:tag used for the bundle.
 # You can use it as an arg. (E.g make bundle-build BUNDLE_IMG=<some-registry>/<project-name-bundle>:<tag>)
@@ -128,8 +128,8 @@ run: manifests generate fmt vet ## Run a controller from your host.
 	go run -ldflags "-X main.version=${VERSION}" ./main.go $(ARGS)
 
 .PHONY: docker-build
-docker-build: test ## Build docker image with the manager.
-	docker build -t ${IMG} . --build-arg VERSION=${VERSION} --target local
+docker-build:  ## Build docker image with the manager.
+	docker build -t ${IMG} . --build-arg VERSION=${VERSION}
 
 .PHONY: docker-push
 docker-push: ## Push docker image with the manager.
