@@ -25,10 +25,9 @@ spec:
       securityContext:
         runAsNonRoot: true
       containers:
-      - command:
-        - /manager
-        args:
+      - args:
         - --leader-elect
+        - --leader-election-id=nginx-ingress-operator
         image: controller:latest
         name: manager
         securityContext:
@@ -48,12 +47,9 @@ spec:
         resources:
           limits:
             cpu: 500m
-            memory: 128Mi
+            memory: 256Mi
           requests:
-            cpu: 250m
-            memory: 64Mi
-        env:
-        - name: WATCH_NAMESPACE
-          value: ""
+            cpu: 500m
+            memory: 128Mi
       serviceAccountName: controller-manager
       terminationGracePeriodSeconds: 10
