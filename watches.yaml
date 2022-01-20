@@ -5,4 +5,8 @@
   chart: helm-charts/nginx-ingress
   overrideValues:
     controller.serviceAccount.name: nginx-ingress
+    controller.defaultTLS.cert: ""
+    controller.defaultTLS.key: ""
+    controller.wildcardTLS.cert: ""
+    controller.wildcardTLS.key: ""
 #+kubebuilder:scaffold:watch
