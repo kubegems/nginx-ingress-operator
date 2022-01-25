@@ -29,7 +29,7 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 # This variable is used to construct full image tags for bundle and catalog images.
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
-# nginx.org/nginx-ingress-operator-bundle:$VERSION and nginx.org/nginx-ingress-operator-catalog:$VERSION.
+# nginx/nginx-ingress-operator-bundle:$VERSION and nginx/nginx-ingress-operator-catalog:$VERSION.
 IMAGE_TAG_BASE ?= image-registry.openshift-image-registry.svc:5000/nginx-ingress-operator-system/nginx-ingress-operator
 
 # BUNDLE_IMG defines the image:tag used for the bundle.
@@ -63,7 +63,7 @@ run: helm-operator ## Run against the configured Kubernetes cluster in ~/.kube/c
 	$(HELM_OPERATOR) run
 
 docker-build: ## Build docker image with the manager.
-	docker build -t ${IMG} .
+	docker build -t ${IMG} . --build-arg VERSION=${VERSION}
 
 docker-push: ## Push docker image with the manager.
 	docker push ${IMG}

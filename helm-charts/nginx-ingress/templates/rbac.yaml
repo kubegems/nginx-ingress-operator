@@ -84,6 +84,7 @@ metadata:
   - get
   - list
   - watch
+  - update
 {{- if .Values.controller.reportIngressStatus.enableLeaderElection }}
   - update
   - create

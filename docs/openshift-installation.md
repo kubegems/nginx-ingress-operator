@@ -17,4 +17,4 @@ Openshift will install the NGINX Ingress Operator:
 
 ![alt text](./images/openshift4.png "NGINX Ingress Operator Subscribe")
 
-You can now deploy the NGINX Ingress Controller instances following the [examples](../examples).
+You can now deploy the NGINX Ingress Controller instances.
