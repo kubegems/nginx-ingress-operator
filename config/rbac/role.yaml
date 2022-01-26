@@ -24,6 +24,10 @@ rules:
   - create
   - delete
   - get
+  - list
+  - patch
+  - update
+  - watch
 # We need to manage Helm release secrets
 - apiGroups:
   - apiextensions.k8s.io
@@ -40,10 +44,33 @@ rules:
   - '*'
   verbs:
   - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - daemonsets
+  - deployments
+  - replicasets
+  - statefulsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
 - apiGroups:
   - security.openshift.io
   verbs:
-  - "*"
+  - create
+  - delete
+  - get
   resources:
   - securitycontextconstraints
 ##

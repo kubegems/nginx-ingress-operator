@@ -19,7 +19,7 @@ spec:
       entries: {}
     customPorts: []
     defaultTLS:
-      secret: null
+      secret: nginx-ingress/default-server-secret
     enableCustomResources: true
     enableLatencyMetrics: false
     enablePreviewPolicies: false

@@ -29,7 +29,7 @@ metadata:
               },
               "customPorts": [],
               "defaultTLS": {
-                "secret": null
+                "secret": "nginx-ingress/default-server-secret"
               },
               "enableCustomResources": true,
               "enableLatencyMetrics": false,
@@ -215,8 +215,6 @@ spec:
           - watch
         - apiGroups:
           - security.openshift.io
-          resourceNames:
-          - nginx-admin
           resources:
           - securitycontextconstraints
           verbs:
