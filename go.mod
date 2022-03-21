@@ -10,7 +10,7 @@ require (
 	github.com/openshift/api v0.0.0-20201013121701-9d5ee23b507d
 	k8s.io/api v0.23.3
 	k8s.io/apiextensions-apiserver v0.23.1
-	k8s.io/apimachinery v0.23.3
+	k8s.io/apimachinery v0.23.5
 	k8s.io/client-go v0.23.3
 	sigs.k8s.io/controller-runtime v0.11.0
 )
